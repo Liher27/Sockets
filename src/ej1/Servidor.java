@@ -9,6 +9,9 @@ public class Servidor {
 
 		try {
 			ServerSocket serverSocket = new ServerSocket(6666, 30000);
+
+			serverSocket.accept();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
