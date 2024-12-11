@@ -18,7 +18,7 @@ public class Cliente {
 
 		for (int i = 1; i < 4; i++) {
 
-			socket = new Socket(host.getHostName(), 9876);
+			socket = new Socket(host.getHostName(), 6666);
 
 			if (socket.isConnected()) {
 				System.out.println("Conexión realizada con el servidor");
