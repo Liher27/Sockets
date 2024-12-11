@@ -16,10 +16,12 @@ public class Servidor {
 		Socket socket = null;
 		System.out.println("server");
 		socket = server.accept();
-		
-		new RecibirThread(socket).start();
 
-		new EnviarThread(socket).start();
+		boolean writing = true;
+
+		new RecibirThread(socket, writing).start();
+
+		new EnviarThread(socket, writing).start();
 
 		server.close();
 	}

@@ -11,12 +11,12 @@ public class EnviarThread extends Thread {
 
 	PrintWriter out = null;
 	Scanner teclado = null;
-
+	boolean writing = false;
 	Socket socket = null;
 
-	public EnviarThread(Socket socket) throws IOException {
+	public EnviarThread(Socket socket, boolean writing) throws IOException {
 		out = new PrintWriter(new BufferedWriter(new OutputStreamWriter((socket.getOutputStream()))), true);
-
+		this.writing = writing;
 		teclado = new Scanner(System.in);
 		this.socket = socket;
 	}
@@ -31,5 +31,7 @@ public class EnviarThread extends Thread {
 			if (input.equals("salir"))
 				break;
 		}
+		System.out.println("Fin de la conversacion enviar");
+		writing = false;
 	}
 }

@@ -9,16 +9,18 @@ public class RecibirThread extends Thread {
 
 	BufferedReader lectorMensaje = null;
 	Socket socket = null;
+	boolean writing = false;
 
-	public RecibirThread(Socket socket) throws IOException {
+	public RecibirThread(Socket socket, boolean writing) throws IOException {
 		this.socket = socket;
 		lectorMensaje = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		this.writing = writing;
 	}
 
 	@Override
 	public void run() {
 		String mensaje = "";
-		while (true) {
+		while (writing) {
 			try {
 				mensaje = lectorMensaje.readLine();
 				if (mensaje.equals("salir"))
@@ -28,5 +30,7 @@ public class RecibirThread extends Thread {
 				System.out.println("Se ha cortado la conexion");
 			}
 		}
+		System.out.println("Fin de la conversacion Recibir");
+		writing = false;
 	}
 }

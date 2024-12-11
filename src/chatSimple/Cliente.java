@@ -16,11 +16,13 @@ public class Cliente {
 		Socket socket = null;
 
 		socket = new Socket(ip, port);
+		
+		boolean writing = true;
 
 		System.out.println("Conectado con el servidor!...");
 
-		new RecibirThread(socket).start();
+		new RecibirThread(socket, writing).start();
 
-		new EnviarThread(socket).start();
+		new EnviarThread(socket, writing).start();
 	}
 }
