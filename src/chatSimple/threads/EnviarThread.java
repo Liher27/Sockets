@@ -24,14 +24,13 @@ public class EnviarThread extends Thread {
 	@Override
 	public void run() {
 		String input = new String();
-		while (true) {
+		while (writing) {
 			input = teclado.nextLine();
 			out.println(input);
 			out.flush();
 			if (input.equals("salir"))
-				break;
+				writing = false;
 		}
 		System.out.println("Fin de la conversacion enviar");
-		writing = false;
 	}
 }

@@ -23,14 +23,21 @@ public class RecibirThread extends Thread {
 		while (writing) {
 			try {
 				mensaje = lectorMensaje.readLine();
-				if (mensaje.equals("salir"))
-					break;
-				System.out.println(mensaje);
+				if (mensaje != null) {
+					if (mensaje.equals("salir")) {
+						writing = false;
+						socket.close();
+					}
+					System.out.println(mensaje);
+				} else {
+					writing = false;
+					socket.close();
+				}
+
 			} catch (Exception e) {
 				System.out.println("Se ha cortado la conexion");
 			}
 		}
 		System.out.println("Fin de la conversacion Recibir");
-		writing = false;
 	}
 }
